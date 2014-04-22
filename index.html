@@ -15,6 +15,7 @@
     -o-background-size: cover;
     background-size: cover;
     background-color: #000;
+    height: 100%;
   }
 
   body, h1 {
@@ -22,6 +23,7 @@
     color: #fff;
     font-family: "Lato", helvetica, sans-serif;
     font-weight: 200;
+    height: 100%;
   }
 
   h1 {
@@ -112,18 +114,25 @@
       font-size: 24px;
     }
 
+    @media (max-width: 500px) {
+      .form {
+        max-width: 320px;
+      }
+
+    }
+
   </style>
 
 </head>
 <body>
-<div class="stats">Tries: <span id="stats-data">0</span></div>
-<a href="" class="reset"><i class="fa fa-refresh"></i>Reset</a>
-<div class="form">
-  <i class="fa fa-question-circle"></i>
-  <div class="col1">
-    <h1>Guess a number!</h1>
-    <input id="number" name="form" type="text" name="number" onkeyup="inputKeyUp(event)" placeholder="between 1 - 50"/>
-    <button type="button" onclick="kaitlin()">Enter</button>
+  <div class="stats">Tries: <span id="stats-data">0</span></div>
+  <a href="" class="reset"><i class="fa fa-refresh"></i>Reset</a>
+  <div class="form">
+      <i class="fa fa-question-circle"></i>
+      <div class="col1">
+      <h1>Guess a number!</h1>
+      <input id="number" name="form" type="text" name="number" onkeyup="inputKeyUp(event)" placeholder="between 1 - 50"/>
+      <button type="button" onclick="kaitlin()">Enter</button>
   </div>
   <div class="answer" id="hint2"></div>
   <div id="reward"></div>
@@ -192,24 +201,11 @@ function kaitlin() {
   document.getElementById("hint2").innerHTML = text;
 
 }
-
-
-
-
 </script>
-
-
-
-
 
 
 </body>
 </html>
-
-
-
-
-
 
 <script>
 // // Direkte Ausgabe
