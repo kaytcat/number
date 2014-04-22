@@ -18,7 +18,6 @@
   }
 
   body, h1 {
-    margin: 0;
     padding: 0;
     color: #fff;
     font-family: "Lato", helvetica, sans-serif;
@@ -26,10 +25,21 @@
   }
 
   h1 {
+    margin: 0;
     font-family: "Lato", helvetica, sans-serif;
     font-weight: 200;
     font-size: 60px;
     padding-bottom: 10px;
+  }
+
+  .stats {
+    border: 1px solid #fff;
+    width: 60px;
+    display: inline-block;
+  }
+
+  .stats span {
+    padding-left: 4px;
   }
 
     .form {
@@ -41,6 +51,7 @@
       right: 0;
       bottom: 0;
       top: 0;
+      text-align: center;
     }
 
     .col1 {
@@ -48,9 +59,6 @@
     }
 
     div {
-      text-align: center;
-      width: 800px;
-      margin: 0 auto;
       padding: 10px;
     }
 
@@ -72,7 +80,7 @@
       padding: 0;
     }
 
-    .fa {
+    .fa-question-circle {
       font-size: 80px;
       color: #BEE22C;
     }
@@ -81,6 +89,10 @@
       font-size: 26px;
       color: #fff;
       padding-right: 10px;
+    }
+
+    .fa-refresh {
+      padding-right: 5px;
     }
 
     .answer {
@@ -93,15 +105,24 @@
       padding-top: 0;
     }
 
+    .reset {
+      text-decoration: none;
+      color: #BEE22C;
+      padding-left: 10px;
+      font-size: 24px;
+    }
+
   </style>
 
 </head>
 <body>
+<div class="stats">Tries: <span id="stats-data">0</span></div>
+<a href="" class="reset"><i class="fa fa-refresh"></i>Reset</a>
 <div class="form">
   <i class="fa fa-question-circle"></i>
   <div class="col1">
     <h1>Guess a number!</h1>
-    <input id="number" name="form" type="text" name="number" onkeyup="inputKeyUp(event)" placeholder="between 1 - 100"/>
+    <input id="number" name="form" type="text" name="number" onkeyup="inputKeyUp(event)" placeholder="between 1 - 50"/>
     <button type="button" onclick="kaitlin()">Enter</button>
   </div>
   <div class="answer" id="hint2"></div>
@@ -110,7 +131,7 @@
 
 <script>
 
-var number = Math.floor((Math.random()*100)+1);
+var number = Math.floor((Math.random()*50)+1);
 var storage = 0;
 console.log(number);
 
@@ -128,19 +149,20 @@ function kaitlin() {
   guesss = document.getElementById("number").value;
   poo = Number(guesss);
   texts = {
-    none: "Please enter a number between 1 - 100!",
+    none: "Please enter a number between 1 - 50!",
     correct: "You got it!!!",
     everythingelse: "Try again!",
     higher: "Tip: Higher",
     lower: "Tip: Lower",
-    close: "Tip: You're getting close!"
+    close: "<i class='fa fa-lightbulb-o'></i>Tip: You're getting close!"
   };
 
   if ( poo !== number) {
     storage++;
     console.log(storage)
+    document.getElementById("stats-data").innerHTML = storage;
   } else {
-    document.getElementById("reward").innerHTML = "Congrats you won with only " + storage + "tries!";
+    document.getElementById("reward").innerHTML = "Congrats you won with only " + storage + " tries!";
   }
 
 
@@ -166,7 +188,7 @@ function kaitlin() {
 
 
 
-  text = text + "<br/>" + "<i class='fa fa-lightbulb-o'></i><span class='tip'>" + tip + "</span>"
+  text = text + "<br/>" + "<span class='tip'>" + tip + "</span>"
   document.getElementById("hint2").innerHTML = text;
 
 }
